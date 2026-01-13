@@ -1,27 +1,32 @@
 class Solution {
-    public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-        HashMap<Character, Character> map = new HashMap<>();
+public:
+    bool isValid(string s) {
+        stack<char> st;
 
-        map.put(')', '(');
-        map.put('}', '{');
-        map.put(']', '[');
+        for(int i=0;i<s.size();i++){
 
-        for (char c : s.toCharArray()) {
-            // If opening bracket, push to stack
-            if (c == '(' || c == '{' || c == '[') {
-                stack.push(c);
-            } 
-            // If closing bracket
-            else {
-                // Stack empty or mismatch
-                if (stack.isEmpty() || stack.peek() != map.get(c)) {
+            if(s[i]=='(' || s[i]=='{' || s[i]=='['){  //opening brackets (pushing into stack)
+                st.push(s[i]);
+            }
+            else{//closing brackets
+
+                if(s.size()==0){
                     return false;
                 }
-                stack.pop();
+                
+                if (st.empty()) return false;
+
+                if(  //check if top of stack match with next closing bracket.
+                    (st.top()=='(' && s[i]==')') ||
+                    (st.top()=='{' && s[i]=='}') ||
+                    (st.top()=='[' && s[i]==']')){
+                     st.pop();
+                }
+                else{ //no match
+                    return false;
+                }
             }
         }
-        // Stack should be empty at the end
-        return stack.isEmpty();
+    return st.empty();
     }
-}
+};
