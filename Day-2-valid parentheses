@@ -8,6 +8,7 @@ public:
             if(s[i]=='(' || s[i]=='{' || s[i]=='['){  //opening brackets (pushing into stack)
                 st.push(s[i]);
             }
+
             else{//closing brackets
 
                 if(s.size()==0){
