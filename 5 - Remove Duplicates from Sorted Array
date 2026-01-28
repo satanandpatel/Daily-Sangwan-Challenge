@@ -1,0 +1,17 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+
+        if(nums.length==0) return 0;       //for empty list.
+
+        int k = 1;        
+        for(int i=1 ; i < nums.length ; i++){
+            
+            if(nums[i] != nums[i-1]){      //if element at index 1 is not equal to that of index 0.
+                nums[k]=nums[i];
+                k++;
+            }
+        }
+        
+        return k;
+    }
+}
